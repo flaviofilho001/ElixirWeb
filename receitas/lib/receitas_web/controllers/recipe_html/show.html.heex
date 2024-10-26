@@ -1,0 +1,53 @@
+<.header class="bg-gray-800 text-white p-6 rounded-md shadow-md">
+  <%= @recipe.title %>
+  <:subtitle><%= @recipe.introduction %></:subtitle>
+  <:actions>
+    <.link href={~p"/recipes/#{@recipe}/edit"}>
+      <.button class="bg-blue-600 hover:bg-blue-700">Edit recipe</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<section class="max-w-3xl mx-auto mt-8 p-4">
+  <!-- Ingredientes Section -->
+  <h2 class="text-2xl font-semibold text-gray-800 border-b pb-2 mb-4">Ingredientes</h2>
+  <p class="text-gray-600 mb-4">
+    <%= @recipe.ingredients %>
+  </p>
+
+  <!-- Detalhes da Receita -->
+  <div class="bg-white shadow rounded-md p-6 mb-8">
+    <.list class="grid gap-4">
+      <:item title="Nome da Receita">
+        <span class="text-lg font-medium text-gray-700"><%= @recipe.title %></span>
+      </:item>
+      <:item title="Introdução">
+        <p class="text-gray-600"><%= @recipe.introduction %></p>
+      </:item>
+      <:item title="Descrição">
+        <p class="text-gray-600"><%= @recipe.description %></p>
+      </:item>
+      <:item title="Imagem">
+        <%= if @recipe.image do %>
+          <img src={@recipe.image} alt={@recipe.image_description} class="w-full max-w-sm mx-auto rounded-md shadow-md" />
+        <% else %>
+          <p class="text-gray-500 italic">Nenhuma imagem disponível</p>
+        <% end %>
+      </:item>
+      <:item title="Descrição da Imagem">
+        <p class="text-gray-600"><%= @recipe.image_description %></p>
+      </:item>
+      <:item title="Privado">
+        <%= if @recipe.is_private do %>
+          <span class="text-red-500 font-semibold">Sim</span>
+        <% else %>
+          <span class="text-green-500 font-semibold">Não</span>
+        <% end %>
+      </:item>
+    </.list>
+  </div>
+
+  <div class="flex justify-end">
+    <.back navigate={~p"/recipes"} class="text-blue-600 hover:underline">Voltar para as receitas</.back>
+  </div>
+</section>

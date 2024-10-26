@@ -15,6 +15,10 @@ module.exports = {
     extend: {
       colors: {
         brand: "#FD4F00",
+        zyellow: "#FFFBC1",
+        zred: "#F7A4A4",
+        zorange: "#FEBE8C",
+        zgreen: "#B6E2A1",
       }
     },
   },

@@ -18,9 +18,15 @@ defmodule ReceitasWeb.Router do
   end
 
   scope "/", ReceitasWeb do
-    pipe_through :browser
+    #pipe_through :browser
+    pipe_through [:browser, :require_authenticated_user]
 
     get "/", PageController, :home
+    resources "/recipes", RecipeController
+    get "/my-recipes", RecipeController, :my_recipes
+    #get "/home", // home forum?
+    #get "/minhas-receitas"
+    #get "/meu-perfil", :meu-perfil
   end
 
   # Other scopes may use custom stacks.

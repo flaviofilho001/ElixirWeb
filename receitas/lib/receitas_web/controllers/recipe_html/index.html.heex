@@ -1,0 +1,44 @@
+<.header>
+  <h1 class="text-2xl text-orange-400 font-bold">Lista de Receitas</h1>
+</.header>
+
+<div class="mt-4 mb-4">
+  <form action={~p"/recipes"} method="get" class="flex space-x-2">
+    <div class="w-full flex gap-2">
+     <div class="w-full"> 
+    <input type="text" name="search" value={@search_term || ""} placeholder="Buscar pelo título..." class="border border-gray-300 w-full rounded px-2 py-1"/>
+    </div>
+    <div class="flex gap-2">
+    <button type="submit" class="bg-green-500 text-white rounded px-4 py-1">Buscar</button>
+    
+    <select name="sort" class="border border-gray-300 rounded w-36 px-2 py-1">
+      <option value="asc" selected={@sort_order == "asc"}>Mais Antigo</option>
+      <option value="desc" selected={@sort_order == "desc"}>Mais Recente</option>
+    </select>
+    </div>
+    </div>
+  </form>
+</div>
+
+<div id="recipes" class="mt-4 space-y-4">
+  <%= for recipe <- @recipes do %>
+    <div class="p-4 flex justify-between rounded-lg shadow-lg cursor-pointer text-green-900 bg-yellow-200 hover:bg-gray-200" phx-click={JS.navigate(~p"/recipes/#{recipe}")}>
+       <div>
+        <p class="text-yellow-800 text-sm">
+          <%= if recipe.user do %>
+            <%= recipe.user.email %> 
+          <% else %>
+            "Usuário Desconhecido"
+          <% end %>
+        </p>
+        <h2 class="font-bold text-xl">
+          <%= recipe.title %>
+        </h2>
+        <p><%= recipe.introduction %></p>
+      </div>
+      <%= if recipe.image do %>
+        <img src={recipe.image} alt={recipe.image_description} class="w-40 h-24 object-cover rounded-md shadow-md" />
+      <% end %>
+    </div>
+  <% end %>
+</div>

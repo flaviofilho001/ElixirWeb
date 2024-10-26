@@ -1,0 +1,8 @@
+<.header>
+  Edit Recipe <%= @recipe.id %>
+  <:subtitle>Use this form to manage recipe records in your database.</:subtitle>
+</.header>
+
+<.recipe_form changeset={@changeset} action={~p"/recipes/#{@recipe}"} />
+
+<.back navigate={~p"/recipes"}>Back to recipes</.back>

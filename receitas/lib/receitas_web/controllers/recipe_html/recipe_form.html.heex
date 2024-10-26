@@ -1,0 +1,15 @@
+<.simple_form :let={f} for={@changeset} action={@action}>
+  <.error :if={@changeset.action}>
+    Oops, algo deu errado! Por favor, cheque os erros abaixo.
+  </.error>
+  <.input field={f[:title]} type="text" label="Nome da Receita" />
+  <.input field={f[:introduction]} type="textarea" label="Introdução" />
+  <.input field={f[:ingredients]} type="textarea" label="Ingredientes" />
+  <.input field={f[:description]} type="textarea" label="Texto da Receita" />
+  <.input field={f[:image]} type="text" label="Url da Imagem" />
+  <.input field={f[:image_description]} type="text" label="Descrição da Imagem" />
+  <.input field={f[:is_private]} type="checkbox" label="Privado" />
+  <:actions>
+    <.button>Salvar Receita</.button>
+  </:actions>
+</.simple_form>
