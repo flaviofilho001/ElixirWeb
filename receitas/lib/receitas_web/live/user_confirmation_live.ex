@@ -11,13 +11,13 @@ defmodule ReceitasWeb.UserConfirmationLive do
       <.simple_form for={@form} id="confirmation_form" phx-submit="confirm_account">
         <input type="hidden" name={@form[:token].name} value={@form[:token].value} />
         <:actions>
-          <.button phx-disable-with="Confirming..." class="w-full">Confirm my account</.button>
+          <.button phx-disable-with="Confirmando..." class="w-full">Confirm my account</.button>
         </:actions>
       </.simple_form>
 
       <p class="text-center mt-4">
-        <.link href={~p"/users/register"}>Register</.link>
-        | <.link href={~p"/users/log_in"}>Log in</.link>
+        <.link href={~p"/users/register"}>Registro</.link>
+        | <.link href={~p"/users/log_in"}>Login</.link>
       </p>
     </div>
     """
@@ -35,7 +35,7 @@ defmodule ReceitasWeb.UserConfirmationLive do
       {:ok, _} ->
         {:noreply,
          socket
-         |> put_flash(:info, "User confirmed successfully.")
+         |> put_flash(:info, "Usuário confirmado com sucesso.")
          |> redirect(to: ~p"/")}
 
       :error ->
@@ -50,7 +50,7 @@ defmodule ReceitasWeb.UserConfirmationLive do
           %{} ->
             {:noreply,
              socket
-             |> put_flash(:error, "User confirmation link is invalid or it has expired.")
+             |> put_flash(:error, "O link de confirmação do usuário é inválido ou expirou.")
              |> redirect(to: ~p"/")}
         end
     end

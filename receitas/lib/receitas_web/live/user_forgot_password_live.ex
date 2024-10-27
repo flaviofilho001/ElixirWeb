@@ -7,21 +7,21 @@ defmodule ReceitasWeb.UserForgotPasswordLive do
     ~H"""
     <div class="mx-auto max-w-sm">
       <.header class="text-center">
-        Forgot your password?
-        <:subtitle>We'll send a password reset link to your inbox</:subtitle>
+        Esqueceu sua senha?
+        <:subtitle>Enviaremos um link de redefinição de senha para sua caixa de entrada</:subtitle>
       </.header>
 
       <.simple_form for={@form} id="reset_password_form" phx-submit="send_email">
         <.input field={@form[:email]} type="email" placeholder="Email" required />
         <:actions>
           <.button phx-disable-with="Sending..." class="w-full">
-            Send password reset instructions
+            Enviar instruções de redefinição de senha
           </.button>
         </:actions>
       </.simple_form>
       <p class="text-center text-sm mt-4">
-        <.link href={~p"/users/register"}>Register</.link>
-        | <.link href={~p"/users/log_in"}>Log in</.link>
+        <.link href={~p"/users/register"}>Registro</.link>
+        | <.link href={~p"/users/log_in"}>Login</.link>
       </p>
     </div>
     """
@@ -40,7 +40,7 @@ defmodule ReceitasWeb.UserForgotPasswordLive do
     end
 
     info =
-      "If your email is in our system, you will receive instructions to reset your password shortly."
+      "Se o seu e-mail estiver em nosso sistema, você receberá instruções para redefinir sua senha em breve."
 
     {:noreply,
      socket

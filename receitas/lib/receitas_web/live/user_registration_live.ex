@@ -8,13 +8,13 @@ defmodule ReceitasWeb.UserRegistrationLive do
     ~H"""
     <div class="mx-auto max-w-sm">
       <.header class="text-center">
-        Register for an account
+          Registre-se para uma conta
         <:subtitle>
-          Already registered?
+          Já está cadastrado?
           <.link navigate={~p"/users/log_in"} class="font-semibold text-brand hover:underline">
-            Log in
+            Login
           </.link>
-          to your account now.
+          para sua conta agora.
         </:subtitle>
       </.header>
 
@@ -28,14 +28,14 @@ defmodule ReceitasWeb.UserRegistrationLive do
         method="post"
       >
         <.error :if={@check_errors}>
-          Oops, something went wrong! Please check the errors below.
+          Ops, algo deu errado! Verifique os erros abaixo.
         </.error>
 
         <.input field={@form[:email]} type="email" label="Email" required />
-        <.input field={@form[:password]} type="password" label="Password" required />
+        <.input field={@form[:password]} type="password" label="Senha" required />
 
         <:actions>
-          <.button phx-disable-with="Creating account..." class="w-full">Create an account</.button>
+          <.button phx-disable-with="Creating account..." class="w-full">Crie uma conta</.button>
         </:actions>
       </.simple_form>
     </div>

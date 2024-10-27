@@ -6,8 +6,8 @@ defmodule ReceitasWeb.UserSettingsLive do
   def render(assigns) do
     ~H"""
     <.header class="text-center">
-      Account Settings
-      <:subtitle>Manage your account email address and password settings</:subtitle>
+      Configurações de conta
+      <:subtitle>Gerencie o endereço de e-mail e as configurações de senha da sua conta</:subtitle>
     </.header>
 
     <div class="space-y-12 divide-y">
@@ -65,7 +65,7 @@ defmodule ReceitasWeb.UserSettingsLive do
             required
           />
           <:actions>
-            <.button phx-disable-with="Changing...">Change Password</.button>
+            <.button phx-disable-with="Changing...">Mudar senha</.button>
           </:actions>
         </.simple_form>
       </div>
@@ -77,10 +77,10 @@ defmodule ReceitasWeb.UserSettingsLive do
     socket =
       case Accounts.update_user_email(socket.assigns.current_user, token) do
         :ok ->
-          put_flash(socket, :info, "Email changed successfully.")
+          put_flash(socket, :info, "Email alterado com sucesso.")
 
         :error ->
-          put_flash(socket, :error, "Email change link is invalid or it has expired.")
+          put_flash(socket, :error, "O link de alteração de e-mail é inválido ou expirou.")
       end
 
     {:ok, push_navigate(socket, to: ~p"/users/settings")}
@@ -127,7 +127,7 @@ defmodule ReceitasWeb.UserSettingsLive do
           &url(~p"/users/settings/confirm_email/#{&1}")
         )
 
-        info = "A link to confirm your email change has been sent to the new address."
+        info = "Um link para confirmar a alteração do seu e-mail foi enviado para o novo endereço."
         {:noreply, socket |> put_flash(:info, info) |> assign(email_form_current_password: nil)}
 
       {:error, changeset} ->
