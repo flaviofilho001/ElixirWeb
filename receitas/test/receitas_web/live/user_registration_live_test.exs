@@ -31,8 +31,8 @@ defmodule ReceitasWeb.UserRegistrationLiveTest do
         |> render_change(user: %{"email" => "with spaces", "password" => "too short"})
 
       assert result =~ "Register"
-      assert result =~ "must have the @ sign and no spaces"
-      assert result =~ "should be at least 12 character"
+      assert result =~ "O e-mail deve ter @ e não conter espaços"
+      assert result =~ "O e-mail deve ter pelo menos 12 character(es)"
     end
   end
 

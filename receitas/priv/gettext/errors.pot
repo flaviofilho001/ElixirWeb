@@ -67,8 +67,8 @@ msgid_plural "should have at least %{count} item(s)"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "should be at least %{count} character(s)"
-msgid_plural "should be at least %{count} character(s)"
+msgid "deve ter pelo menos %{count} caracter(s)"
+msgid_plural "deve ter pelo menos %{count} caracter(es)"
 msgstr[0] ""
 msgstr[1] ""
 

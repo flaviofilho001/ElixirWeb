@@ -43,7 +43,7 @@ defmodule ReceitasWeb.UserResetPasswordLiveTest do
           user: %{"password" => "secret12", "password_confirmation" => "secret123456"}
         )
 
-      assert result =~ "should be at least 12 character"
+      assert result =~ "deve ter pelo menos 12 caracter(es)"
       assert result =~ "does not match password"
     end
   end
@@ -82,7 +82,7 @@ defmodule ReceitasWeb.UserResetPasswordLiveTest do
         |> render_submit()
 
       assert result =~ "Reset Password"
-      assert result =~ "should be at least 12 character(s)"
+      assert result =~ "deve ter pelo menos 12 character(es)"
       assert result =~ "does not match password"
     end
   end

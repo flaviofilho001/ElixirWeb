@@ -9,7 +9,7 @@ defmodule Receitas.Accounts.User do
     field :current_password, :string, virtual: true, redact: true
     field :confirmed_at, :utc_datetime
 
-     has_many :recipes, Receitas.Recipes.Recipe
+    has_many :recipes, Receitas.Recipes.Recipe
 
     timestamps(type: :utc_datetime)
   end
@@ -47,7 +47,7 @@ defmodule Receitas.Accounts.User do
   defp validate_email(changeset, opts) do
     changeset
     |> validate_required([:email])
-    |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: "must have the @ sign and no spaces")
+    |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: "O e-mail deve ter @ e não conter espaços")
     |> validate_length(:email, max: 160)
     |> maybe_validate_unique_email(opts)
   end
