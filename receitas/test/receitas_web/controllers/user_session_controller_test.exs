@@ -90,7 +90,7 @@ defmodule ReceitasWeb.UserSessionControllerTest do
           "user" => %{"email" => "invalid@email.com", "password" => "invalid_password"}
         })
 
-      assert Phoenix.Flash.get(conn.assigns.flash, :error) == "Invalid email or password"
+      assert Phoenix.Flash.get(conn.assigns.flash, :error) == "E-mail ou senha inválida"
       assert redirected_to(conn) == ~p"/users/log_in"
     end
   end
@@ -100,14 +100,14 @@ defmodule ReceitasWeb.UserSessionControllerTest do
       conn = conn |> log_in_user(user) |> delete(~p"/users/log_out")
       assert redirected_to(conn) == ~p"/"
       refute get_session(conn, :user_token)
-      assert Phoenix.Flash.get(conn.assigns.flash, :info) =~ "Logged out successfully"
+      assert Phoenix.Flash.get(conn.assigns.flash, :info) =~ "Desconectado com sucesso."
     end
 
     test "succeeds even if the user is not logged in", %{conn: conn} do
       conn = delete(conn, ~p"/users/log_out")
       assert redirected_to(conn) == ~p"/"
       refute get_session(conn, :user_token)
-      assert Phoenix.Flash.get(conn.assigns.flash, :info) =~ "Logged out successfully"
+      assert Phoenix.Flash.get(conn.assigns.flash, :info) =~ "Desconectado com sucesso."
     end
   end
 end

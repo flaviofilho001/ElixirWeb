@@ -144,18 +144,56 @@ defmodule ReceitasWeb.RecipeController do
   #   end
   # end
 
-  def my_recipes(conn, _params) do
+  # def my_recipes(conn, _params) do
+  #   user = conn.assigns[:current_user] # Pega o usuário atual da sessão
+
+  #   # Verifica se user está presente para evitar problemas
+  #   if user do
+  #     recipes = Repo.all(from r in Recipe, where: r.user_id == ^user.id) # Busca receitas do usuário
+
+  #     render(conn, "my_recipes.html", recipes: recipes)
+  #   else
+  #     conn
+  #     |> put_flash(:error, "You need to be logged in to view your recipes.")
+  #     |> redirect(to: "/users/log_in") # Redireciona para login caso não esteja autenticado
+  #   end
+  # end
+  def my_recipes(conn, params) do
     user = conn.assigns[:current_user] # Pega o usuário atual da sessão
 
-    # Verifica se user está presente para evitar problemas
-    if user do
-      recipes = Repo.all(from r in Recipe, where: r.user_id == ^user.id) # Busca receitas do usuário
+    # Obtenha search_term e sort_order dos parâmetros, com valores padrão
+    search_term = Map.get(params, "search", "")
+    sort_order = Map.get(params, "sort", "asc")
 
-      render(conn, "my_recipes.html", recipes: recipes)
-    else
-      conn
-      |> put_flash(:error, "You need to be logged in to view your recipes.")
-      |> redirect(to: "/users/log_in") # Redireciona para login caso não esteja autenticado
-    end
+    # Define a consulta inicial com base na presença do usuário
+    recipes_query =
+      if user do
+        # Quando o usuário está logado, busca receitas do usuário
+        from r in Recipe,
+          where: r.user_id == ^user.id,
+          preload: [:user] # Pré-carrega a associação `user`
+      end
+
+    # Filtra receitas com o termo de busca, se presente
+    recipes_query =
+      if search_term != "" do
+        from r in recipes_query,
+        where: ilike(r.title, ^"%#{String.downcase(search_term)}%")
+      else
+        recipes_query
+      end
+
+    # Ordena as receitas com base no parâmetro de ordenação
+    recipes_query =
+      case sort_order do
+        "desc" -> from r in recipes_query, order_by: [desc: r.inserted_at]
+        _ -> from r in recipes_query, order_by: [asc: r.inserted_at]
+      end
+
+    # Executa a consulta
+    recipes = Repo.all(recipes_query)
+
+    # Renderiza a página my_recipes com receitas filtradas e ordenadas
+    render(conn, "my_recipes.html", recipes: recipes, search_term: search_term, sort_order: sort_order)
   end
 end

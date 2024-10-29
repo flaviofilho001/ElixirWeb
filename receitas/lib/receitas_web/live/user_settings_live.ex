@@ -24,12 +24,12 @@ defmodule ReceitasWeb.UserSettingsLive do
             name="current_password"
             id="current_password_for_email"
             type="password"
-            label="Current password"
+            label="Senha atual"
             value={@email_form_current_password}
             required
           />
           <:actions>
-            <.button phx-disable-with="Changing...">Change Email</.button>
+            <.button phx-disable-with="Changing...">Mudar Email</.button>
           </:actions>
         </.simple_form>
       </div>
@@ -49,26 +49,27 @@ defmodule ReceitasWeb.UserSettingsLive do
             id="hidden_user_email"
             value={@current_email}
           />
-          <.input field={@password_form[:password]} type="password" label="New password" required />
+          <.input field={@password_form[:password]} type="password" label="Nova senha" required />
           <.input
             field={@password_form[:password_confirmation]}
             type="password"
-            label="Confirm new password"
+            label="Confirmar nova senha"
           />
           <.input
             field={@password_form[:current_password]}
             name="current_password"
             type="password"
-            label="Current password"
+            label="Senha atual"
             id="current_password_for_password"
             value={@current_password}
             required
           />
           <:actions>
-            <.button phx-disable-with="Changing...">Mudar senha</.button>
+            <.button class="mb-8" phx-disable-with="Changing...">Mudar senha</.button>
           </:actions>
         </.simple_form>
-      </div>
+        <a href={~p"/users/log_out"} style="background-color: #f56565; color: white; padding: 8px 16px; border-radius: 8px;">Sair da Conta</a>
+        </div>
     </div>
     """
   end

@@ -5,17 +5,17 @@ defmodule ReceitasWeb.UserSessionController do
   alias ReceitasWeb.UserAuth
 
   def create(conn, %{"_action" => "registered"} = params) do
-    create(conn, params, "Account created successfully!")
+    create(conn, params, "Conta criada com sucesso!")
   end
 
   def create(conn, %{"_action" => "password_updated"} = params) do
     conn
     |> put_session(:user_return_to, ~p"/users/settings")
-    |> create(params, "Password updated successfully!")
+    |> create(params, "Senha atualizada com sucesso!")
   end
 
   def create(conn, params) do
-    create(conn, params, "Welcome back!")
+    create(conn, params, "Bem-vindo de volta!")
   end
 
   defp create(conn, %{"user" => user_params}, info) do
@@ -28,7 +28,7 @@ defmodule ReceitasWeb.UserSessionController do
     else
       # In order to prevent user enumeration attacks, don't disclose whether the email is registered.
       conn
-      |> put_flash(:error, "Invalid email or password")
+      |> put_flash(:error, "E-mail ou senha inválida")
       |> put_flash(:email, String.slice(email, 0, 160))
       |> redirect(to: ~p"/users/log_in")
     end
@@ -36,7 +36,7 @@ defmodule ReceitasWeb.UserSessionController do
 
   def delete(conn, _params) do
     conn
-    |> put_flash(:info, "Logged out successfully.")
+    |> put_flash(:info, "Desconectado com sucesso.")
     |> UserAuth.log_out_user()
   end
 end

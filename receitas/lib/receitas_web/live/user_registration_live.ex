@@ -35,7 +35,7 @@ defmodule ReceitasWeb.UserRegistrationLive do
         <.input field={@form[:password]} type="password" label="Senha" required />
 
         <:actions>
-          <.button phx-disable-with="Creating account..." class="w-full">Crie uma conta</.button>
+          <.button phx-disable-with="Creating account..." class="bg-green-500 w-full">Crie uma conta</.button>
         </:actions>
       </.simple_form>
     </div>
