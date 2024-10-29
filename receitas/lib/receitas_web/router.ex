@@ -22,15 +22,17 @@ defmodule ReceitasWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    resources "/recipes", RecipeController, only: [:index, :show]
+    get "/recipes", RecipeController, :public_recipes
+    #resources "/my-recipes", RecipeController, only: [:index, :show]
   end
 
   scope "/", ReceitasWeb do
     #pipe_through :browser
     pipe_through [:browser, :require_authenticated_user]
 
-    resources "/recipes", RecipeController
-    get "/my-recipes", RecipeController, :my_recipes
+    resources "/my-recipes", RecipeController
+    get "/recipes", RecipeController, :public_recipes
+    get "/recipes/:id", RecipeController, :show_public_recipe
   end
 
   # Other scopes may use custom stacks.

@@ -3,6 +3,6 @@
   <:subtitle>Utilize este formulário para gerenciar registros de receitas em seu banco de dados.</:subtitle>
 </.header>
 
-<.recipe_form changeset={@changeset} action={~p"/recipes/#{@recipe}"} />
+<.recipe_form changeset={@changeset} action={~p"/my-recipes/#{@recipe}"} />
 
-<.back navigate={~p"/recipes"}>Voltar para receitas</.back>
+<.back navigate={~p"/my-recipes"}>Voltar para receitas</.back>

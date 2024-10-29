@@ -1,6 +1,13 @@
-<.header>
+
+<div class="flex justify-between mb-4">
   <h1 class="text-2xl text-orange-400 font-bold">Minhas Receitas</h1>
-</.header>
+  <div class="flex justify-end mb-2">
+   
+      <a href={~p"/my-recipes/new"} style="height: 40px; background-color: orange; font-weight: bold;" class="text-white hover:bg-orange-600 flex items-center px-4 rounded-md">Nova Receita</a>
+  
+  </div>
+  </div>
+
 
 <div class="mt-4 mb-4">
   <form action={~p"/my-recipes"} method="get" class="flex space-x-2">

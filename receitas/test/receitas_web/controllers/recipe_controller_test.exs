@@ -9,31 +9,31 @@ defmodule ReceitasWeb.RecipeControllerTest do
 
   describe "index" do
     test "lists all recipes", %{conn: conn} do
-      conn = get(conn, ~p"/recipes")
+      conn = get(conn, ~p"/my-recipes")
       assert html_response(conn, 200) =~ "Listing Recipes"
     end
   end
 
   describe "new recipe" do
     test "renders form", %{conn: conn} do
-      conn = get(conn, ~p"/recipes/new")
+      conn = get(conn, ~p"/my-recipes/new")
       assert html_response(conn, 200) =~ "New Recipe"
     end
   end
 
   describe "create recipe" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post(conn, ~p"/recipes", recipe: @create_attrs)
+      conn = post(conn, ~p"/my-recipes", recipe: @create_attrs)
 
       assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == ~p"/recipes/#{id}"
+      assert redirected_to(conn) == ~p"/my-recipes/#{id}"
 
-      conn = get(conn, ~p"/recipes/#{id}")
+      conn = get(conn, ~p"/my-recipes/#{id}")
       assert html_response(conn, 200) =~ "Recipe #{id}"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, ~p"/recipes", recipe: @invalid_attrs)
+      conn = post(conn, ~p"/my-recipes", recipe: @invalid_attrs)
       assert html_response(conn, 200) =~ "New Recipe"
     end
   end
@@ -42,7 +42,7 @@ defmodule ReceitasWeb.RecipeControllerTest do
     setup [:create_recipe]
 
     test "renders form for editing chosen recipe", %{conn: conn, recipe: recipe} do
-      conn = get(conn, ~p"/recipes/#{recipe}/edit")
+      conn = get(conn, ~p"/my-recipes/#{recipe}/edit")
       assert html_response(conn, 200) =~ "Edit Recipe"
     end
   end
@@ -51,15 +51,15 @@ defmodule ReceitasWeb.RecipeControllerTest do
     setup [:create_recipe]
 
     test "redirects when data is valid", %{conn: conn, recipe: recipe} do
-      conn = put(conn, ~p"/recipes/#{recipe}", recipe: @update_attrs)
-      assert redirected_to(conn) == ~p"/recipes/#{recipe}"
+      conn = put(conn, ~p"/my-recipes/#{recipe}", recipe: @update_attrs)
+      assert redirected_to(conn) == ~p"/my-recipes/#{recipe}"
 
-      conn = get(conn, ~p"/recipes/#{recipe}")
+      conn = get(conn, ~p"/my-recipes/#{recipe}")
       assert html_response(conn, 200) =~ "some updated description"
     end
 
     test "renders errors when data is invalid", %{conn: conn, recipe: recipe} do
-      conn = put(conn, ~p"/recipes/#{recipe}", recipe: @invalid_attrs)
+      conn = put(conn, ~p"/my-recipes/#{recipe}", recipe: @invalid_attrs)
       assert html_response(conn, 200) =~ "Edit Recipe"
     end
   end
@@ -68,11 +68,11 @@ defmodule ReceitasWeb.RecipeControllerTest do
     setup [:create_recipe]
 
     test "deletes chosen recipe", %{conn: conn, recipe: recipe} do
-      conn = delete(conn, ~p"/recipes/#{recipe}")
-      assert redirected_to(conn) == ~p"/recipes"
+      conn = delete(conn, ~p"/my-recipes/#{recipe}")
+      assert redirected_to(conn) == ~p"/my-recipes"
 
       assert_error_sent 404, fn ->
-        get(conn, ~p"/recipes/#{recipe}")
+        get(conn, ~p"/my-recipes/#{recipe}")
       end
     end
   end

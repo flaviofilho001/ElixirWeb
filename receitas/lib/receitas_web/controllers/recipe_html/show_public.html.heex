@@ -1,0 +1,29 @@
+
+<h1 class="text-2xl text-green-900 font-bold"><%= @recipe.title %></h1>
+<h3 class="mb-2"><%= @recipe.user.email %></h3><br/>
+<%= if @recipe.image do %>
+    <img src={@recipe.image} alt={@recipe.image_description} class="w-[200px] h-[40px] object-cover mx-auto rounded-md shadow-md" />
+<% end %>
+
+
+<section class="max-w-3xl mx-auto mt-8 p-4">
+
+  <h2 class="text-2xl font-semibold text-gray-800 border-b pb-2 mb-4">Introdução</h2>
+
+  <p><%= @recipe.introduction %></p>
+  <!-- Ingredientes Section -->
+  <h2 class="mt-8 text-2xl font-semibold text-gray-800 border-b pb-2 mb-4">Ingredientes</h2>
+  <p class="text-gray-600 mb-4">
+    <%= @recipe.ingredients %>
+  </p>
+
+  <!-- Detalhes da Receita -->
+  <h2 class="mt-8 text-2xl font-semibold text-gray-800 border-b pb-2 mb-4">Descrição</h2>
+  <p>
+    <%= @recipe.description %>
+  </p>
+
+  <div class="flex justify-end">
+    <.back navigate={~p"/recipes"} class="text-blue-600 hover:underline">Voltar para as receitas</.back>
+  </div>
+</section>
