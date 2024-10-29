@@ -7,7 +7,7 @@ defmodule Receitas.Repo.Migrations.CreateRecipes do
       add :introduction, :text
       add :ingredients, :text
       add :description, :text
-      add :image, :string
+      add :image, :text
       add :image_description, :string
       add :is_private, :boolean, default: false, null: false
       add :user_id, references(:users, on_delete: :nothing)

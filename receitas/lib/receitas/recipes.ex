@@ -23,6 +23,12 @@ defmodule Receitas.Recipes do
     |> Repo.preload(:user)  # Pré-carrega o usuário associado
   end
 
+  def list_recipes(query) do
+    query
+    |> Repo.all()        # Executa a query passada
+    |> Repo.preload(:user)  # Pré-carrega o usuário associado
+  end
+
   @doc """
   Gets a single recipe.
 

@@ -16,7 +16,7 @@
     <input type="text" name="search" value={@search_term || ""} placeholder="Buscar pelo título..." class="border border-gray-300 w-full rounded px-2 py-1"/>
     </div>
     <div class="flex gap-2">
-    <button type="submit" class="bg-green-500 text-white rounded px-4 py-1">Buscar</button>
+    <button type="submit" class="bg-green-500 text-white rounded px-2 py-1 flex items-center"><svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg><span class="ml-1">Buscar</span></button>
     
     <select name="sort" class="border border-gray-300 rounded w-36 px-2 py-1">
       <option value="asc" selected={@sort_order == "asc"}>Mais Antigo</option>
@@ -32,10 +32,22 @@
     <div class="p-4 flex justify-between rounded-lg shadow-lg cursor-pointer text-green-900 bg-yellow-200 hover:bg-gray-200" phx-click={JS.navigate(~p"/my-recipes/#{recipe}")}>
        <div>
         <h2 class="font-bold text-xl flex items-center">
-            <%= recipe.title %>
+            <%= 
+            if String.length(recipe.title) > 42 do 
+                String.slice(recipe.title, 0, 42) <> "..."
+            else 
+                recipe.title 
+            end 
+            %>
         </h2>
 
-            <p><%= recipe.introduction %></p>
+            <%= 
+            if String.length(recipe.introduction) > 60 do 
+                String.slice(recipe.introduction, 0, 60) <> "..."
+            else 
+                recipe.introduction 
+            end 
+            %>
 
             <%= if recipe.is_private do %>
                 <div class="flex items-center">

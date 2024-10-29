@@ -23,11 +23,12 @@ defmodule ReceitasWeb.Router do
 
     get "/", PageController, :home
     get "/recipes", RecipeController, :public_recipes
-    #resources "/my-recipes", RecipeController, only: [:index, :show]
+    get "/recipes/:id", RecipeController, :show_public_recipe
+
   end
 
   scope "/", ReceitasWeb do
-    #pipe_through :browser
+    # rotas com autenticação
     pipe_through [:browser, :require_authenticated_user]
 
     resources "/my-recipes", RecipeController

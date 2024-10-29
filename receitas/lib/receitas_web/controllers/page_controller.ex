@@ -3,10 +3,10 @@ defmodule ReceitasWeb.PageController do
 
   def home(conn, _params) do
     if conn.assigns[:current_user] do
-      # Redirect to "/my-recipes" if the user is authenticated
-      redirect(conn, to: "/my-recipes")
+      # Redireciona para "/recipes" se o usuário estiver autenticado
+      redirect(conn, to: "/recipes")
     else
-      # Render the home page if the user is not authenticated
+      # Redireciona para home se o usuário não tá autenticado
       render(conn, :home, layout: false)
     end
   end

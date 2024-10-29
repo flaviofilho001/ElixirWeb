@@ -7,7 +7,7 @@ defmodule ReceitasWeb.UserSettingsLive do
     ~H"""
     <.header class="text-center">
       Configurações de conta
-      <:subtitle>Gerencie o endereço de e-mail e as configurações de senha da sua conta</:subtitle>
+      <:subtitle><span class="text-base">Gerencie o endereço de e-mail e as configurações de senha da sua conta</span></:subtitle>
     </.header>
 
     <div class="space-y-12 divide-y">
@@ -68,7 +68,12 @@ defmodule ReceitasWeb.UserSettingsLive do
             <.button class="mb-8" phx-disable-with="Changing...">Mudar senha</.button>
           </:actions>
         </.simple_form>
-        <a href={~p"/users/log_out"} style="background-color: #f56565; color: white; padding: 8px 16px; border-radius: 8px;">Sair da Conta</a>
+
+        <div class="w-full flex justify-center">
+        <.link href={~p"/users/log_out"} method="delete" data-confirm="Você tem certeza que deseja sair?" style="background-color: #f56565; color: white; padding: 8px 16px; border-radius: 8px;">
+          Sair da Conta
+        </.link>
+        </div>
         </div>
     </div>
     """

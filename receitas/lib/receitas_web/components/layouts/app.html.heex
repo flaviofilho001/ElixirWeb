@@ -1,32 +1,33 @@
 <header class="px-4 sm:px-6 lg:px-8 bg-zred">
   <div class="flex items-center justify-between py-3 text-sm">
     <div class="flex items-center gap-4">
-      <a href="/my-recipes">
-        <img src={~p"/images/logo.png"} width="64" />Receitas Deliciosas
-      </a>
-    </div>
+    <a href="/recipes" class="flex items-center">
+      <img src={~p"/images/logo.png"} width="64" alt="Logo" />
+      <span class="text-lg font-semibold text-gray-800 ml-2">Receitas Deliciosas</span>
+    </a>
+  </div>
     <div class="flex items-center gap-4 font-semibold leading-6 text-zinc-900">
       <a href="/recipes" class="bg-zred text-zinc-900 rounded-lg px-4 py-2 hover:bg-zgreen">
-        Receitas Públicas
+        <span class="text-base">Receitas Públicas</span>
       </a>
       <a href="/my-recipes" class="bg-zred text-zinc-900 rounded-lg px-4 py-2 hover:bg-zgreen">
-        Minhas Receitas
+        <span class="text-base">Minhas Receitas</span>
       </a>
       <%= if @current_user do %>
       <.link
             href={~p"/users/settings"}
-            class="bg-zred border border-white text-zinc-900 rounded-lg px-4 py-2 hover:bg-zgreen"
+            class="bg-zred border border-black text-zinc-900 rounded-lg px-4 py-2 hover:bg-zgreen"
           >
-            Minha conta
+            <span class="text-base">Minha conta</span>
           </.link>
      
       <% else %>
     
       <a href="/users/register" class="bg-zred border border-black text-zinc-900 rounded-lg px-4 py-2 hover:bg-zgreen">
-        Registrar
+        <span class="text-base">Registrar</span>
       </a>
-      <a href="/users/log_in" class="bg-zred border border-white text-zinc-900 rounded-lg px-4 py-2 hover:bg-zgreen">
-        Login
+      <a href="/users/log_in" class="bg-zred border border-black text-zinc-900 rounded-lg px-4 py-2 hover:bg-zgreen">
+        <span class="text-base">Login</span>
       </a>
         
       <% end %>

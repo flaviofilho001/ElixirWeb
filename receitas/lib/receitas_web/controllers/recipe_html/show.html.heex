@@ -1,96 +1,47 @@
-<.header class="bg-gray-800 text-white p-6 rounded-md shadow-md">
-  <%= @recipe.title %>
-  <:subtitle><%= @recipe.introduction %></:subtitle>
-  <:actions>
-    <.link href={~p"/my-recipes/#{@recipe}/edit"}>
-      <.button class="bg-blue-600 hover:bg-blue-700">Editar receita</.button>
+
+<div style="margin-top: -50px;">
+    <.back navigate={~p"/my-recipes"} class="text-blue-600 hover:underline">Voltar para as receitas</.back>
+</div>
+
+<div class="mt-4 flex justify-between">
+<h1 class="text-2xl text-green-900 font-bold"><%= @recipe.title %></h1>
+<div class="flex gap-2 align-center justify-center">
+  
+    <.link href={~p"/my-recipes/#{@recipe}/edit"} class="mt-4 flex items-center bg-yellow-400 hover:bg-yellow-600 px-4 py-2 rounded">
+      <span class="mr-2">Editar</span>
+      <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8477 1.87868C19.6761 0.707109 17.7766 0.707105 16.605 1.87868L2.44744 16.0363C2.02864 16.4551 1.74317 16.9885 1.62702 17.5692L1.03995 20.5046C0.760062 21.904 1.9939 23.1379 3.39334 22.858L6.32868 22.2709C6.90945 22.1548 7.44285 21.8693 7.86165 21.4505L22.0192 7.29289C23.1908 6.12132 23.1908 4.22183 22.0192 3.05025L20.8477 1.87868ZM18.0192 3.29289C18.4098 2.90237 19.0429 2.90237 19.4335 3.29289L20.605 4.46447C20.9956 4.85499 20.9956 5.48815 20.605 5.87868L17.9334 8.55027L15.3477 5.96448L18.0192 3.29289ZM13.9334 7.3787L3.86165 17.4505C3.72205 17.5901 3.6269 17.7679 3.58818 17.9615L3.00111 20.8968L5.93645 20.3097C6.13004 20.271 6.30784 20.1759 6.44744 20.0363L16.5192 9.96448L13.9334 7.3787Z" fill="#0F0F0F"></path> </g></svg>
     </.link>
-  </:actions>
-</.header>
-
-<section class="max-w-3xl mx-auto mt-8 p-4">
-  <!-- Ingredientes Section -->
-  <h2 class="text-2xl font-semibold text-gray-800 border-b pb-2 mb-4">Ingredientes</h2>
-  <p class="text-gray-600 mb-4">
-    <%= @recipe.ingredients %>
-  </p>
-
-  <!-- Detalhes da Receita -->
-  <div class="bg-white shadow rounded-md p-6 mb-8">
-    <.list class="grid gap-4">
-      <:item title="Nome da Receita">
-        <span class="text-lg font-medium text-gray-700"><%= @recipe.title %></span>
-      </:item>
-      <:item title="Introdução">
-        <p class="text-gray-600"><%= @recipe.introduction %></p>
-      </:item>
-      <:item title="Descrição">
-        <p class="text-gray-600"><%= @recipe.description %></p>
-      </:item>
-      <:item title="Imagem">
-        <%= if @recipe.image do %>
-          <img src={@recipe.image} alt={@recipe.image_description} class="w-full max-w-sm mx-auto rounded-md shadow-md" />
-        <% else %>
-          <p class="text-gray-500 italic">Nenhuma imagem disponível</p>
-        <% end %>
-      </:item>
-      <:item title="Descrição da Imagem">
-        <p class="text-gray-600"><%= @recipe.image_description %></p>
-      </:item>
-      <:item title="Privado">
-        <%= if @recipe.is_private do %>
+    <.link href={~p"/my-recipes/#{@recipe}"} method="delete" data-confirm="Você tem certeza que quer deletar a receita?" class="mt-4 flex items-center bg-red-600 text-white hover:bg-red-300 px-4 py-2 rounded">
+      <span class="mr-2">Deletar</span>
+      <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+    </.link>
+  </div>
+  </div>
+  Privada:
+<%= if @recipe.is_private do %>
           <span class="text-red-500 font-semibold">Sim</span>
         <% else %>
           <span class="text-green-500 font-semibold">Não</span>
         <% end %>
-      </:item>
-    </.list>
-  </div>
-
-  <div class="flex justify-end">
-    <.back navigate={~p"/my-recipes"} class="text-blue-600 hover:underline">Voltar para as receitas</.back>
-  </div>
-</section>
-
-<div class="flex justify-between">
-<h1 class="text-2xl text-green-900 font-bold"><%= @recipe.title %></h1>
-<div class="flex gap-2">
-<a href={~p"/my-recipes/#{@recipe}/edit"} class="bg-yellow-400 hover:bg-yellow-600 px-4 py-2 rounded">Editar receita</a>
-    <a href="/my-recipes/#{@recipe}/delete" class="bg-red-500 hover:bg-red-300 text-white px-4 py-2 rounded">Excluir receita</a>
-  </div>
-  </div>
-<%= if @recipe.is_private do %>
-          <span class="text-red-500 font-semibold">Privada</span>
-        <% else %>
-          <span class="text-green-500 font-semibold">Pública</span>
-        <% end %>
 <%= if @recipe.image do %>
-    <img src={@recipe.image} alt={@recipe.image_description} class="w-[200px] h-[40px] object-cover mx-auto rounded-md shadow-md" />
+    <img src={@recipe.image} alt={@recipe.image_description} class="w-full mt-4 h-[400px] object-cover mx-auto rounded-md shadow-md" />
 <% end %>
-
-
-  
-  
-
 
 <section class="max-w-3xl mx-auto mt-8 p-4">
 
   <h2 class="text-2xl font-semibold text-gray-800 border-b pb-2 mb-4">Introdução</h2>
 
-  <p><%= @recipe.introduction %></p>
+  <p class="text-gray-600 mb-4"><%= @recipe.introduction |> String.replace("\n", "<br>") |> Phoenix.HTML.raw() %></p>
   <!-- Ingredientes Section -->
   <h2 class="mt-8 text-2xl font-semibold text-gray-800 border-b pb-2 mb-4">Ingredientes</h2>
-  <p class="text-gray-600 mb-4">
-    <%= @recipe.ingredients %>
+  <p>
+    <%= @recipe.ingredients |> String.replace("\n", "<br>") |> Phoenix.HTML.raw() %>
   </p>
 
   <!-- Detalhes da Receita -->
   <h2 class="mt-8 text-2xl font-semibold text-gray-800 border-b pb-2 mb-4">Descrição</h2>
   <p>
-    <%= @recipe.description %>
+    <%= @recipe.description |> String.replace("\n", "<br>") |> Phoenix.HTML.raw() %>
   </p>
 
-  <div class="flex justify-end">
-    <.back navigate={~p"/recipes"} class="text-blue-600 hover:underline">Voltar para as receitas</.back>
-  </div>
 </section>
